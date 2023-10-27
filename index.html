@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sudoku</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Sudoku</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="gridContainer">
+                <div class="group" id="group1">
+                    <div class="cell" id="cell1"></div>
+                    <div class="cell" id="cell2"></div>
+                    <div class="cell" id="cell3"></div>
+                    <div class="cell" id="cell10"></div>
+                    <div class="cell" id="cell11"></div>
+                    <div class="cell" id="cell12"></div>
+                    <div class="cell" id="cell19"></div>
+                    <div class="cell" id="cell20"></div>
+                    <div class="cell" id="cell21"></div>
+                </div>
+                <div class="group" id="group2">
+                    <div class="cell" id="cell4"></div>
+                    <div class="cell" id="cell5"></div>
+                    <div class="cell" id="cell6"></div>
+                    <div class="cell" id="cell13"></div>
+                    <div class="cell" id="cell14"></div>
+                    <div class="cell" id="cell15"></div>
+                    <div class="cell" id="cell22"></div>
+                    <div class="cell" id="cell23"></div>
+                    <div class="cell" id="cell24"></div>
+                </div>
+                <div class="group" id="group3">
+                    <div class="cell" id="cell7"></div>
+                    <div class="cell" id="cell8"></div>
+                    <div class="cell" id="cell9"></div>
+                    <div class="cell" id="cell16"></div>
+                    <div class="cell" id="cell17"></div>
+                    <div class="cell" id="cell18"></div>
+                    <div class="cell" id="cell25"></div>
+                    <div class="cell" id="cell26"></div>
+                    <div class="cell" id="cell27"></div>
+                </div>
+                <div class="group" id="group4">
+                    <div class="cell" id="cell28"></div>
+                    <div class="cell" id="cell29"></div>
+                    <div class="cell" id="cell30"></div>
+                    <div class="cell" id="cell37"></div>
+                    <div class="cell" id="cell38"></div>
+                    <div class="cell" id="cell39"></div>
+                    <div class="cell" id="cell46"></div>
+                    <div class="cell" id="cell47"></div>
+                    <div class="cell" id="cell48"></div>
+                </div>
+                <div class="group" id="group5">
+                    <div class="cell" id="cell31"></div>
+                    <div class="cell" id="cell32"></div>
+                    <div class="cell" id="cell33"></div>
+                    <div class="cell" id="cell40"></div>
+                    <div class="cell" id="cell41"></div>
+                    <div class="cell" id="cell42"></div>
+                    <div class="cell" id="cell49"></div>
+                    <div class="cell" id="cell50"></div>
+                    <div class="cell" id="cell51"></div>
+                </div>
+                <div class="group" id="group6">
+                    <div class="cell" id="cell34"></div>
+                    <div class="cell" id="cell35"></div>
+                    <div class="cell" id="cell36"></div>
+                    <div class="cell" id="cell43"></div>
+                    <div class="cell" id="cell44"></div>
+                    <div class="cell" id="cell45"></div>
+                    <div class="cell" id="cell52"></div>
+                    <div class="cell" id="cell53"></div>
+                    <div class="cell" id="cell54"></div>
+                </div>
+                <div class="group" id="group7">
+                    <div class="cell" id="cell55"></div>
+                    <div class="cell" id="cell56"></div>
+                    <div class="cell" id="cell57"></div>
+                    <div class="cell" id="cell64"></div>
+                    <div class="cell" id="cell65"></div>
+                    <div class="cell" id="cell66"></div>
+                    <div class="cell" id="cell73"></div>
+                    <div class="cell" id="cell74"></div>
+                    <div class="cell" id="cell75"></div>
+                </div>
+                <div class="group" id="group8">
+                    <div class="cell" id="cell58"></div>
+                    <div class="cell" id="cell59"></div>
+                    <div class="cell" id="cell60"></div>
+                    <div class="cell" id="cell67"></div>
+                    <div class="cell" id="cell68"></div>
+                    <div class="cell" id="cell69"></div>
+                    <div class="cell" id="cell76"></div>
+                    <div class="cell" id="cell77"></div>
+                    <div class="cell" id="cell78"></div>
+                </div>
+                <div class="group" id="group9">
+                    <div class="cell" id="cell61"></div>
+                    <div class="cell" id="cell62"></div>
+                    <div class="cell" id="cell63"></div>
+                    <div class="cell" id="cell70"></div>
+                    <div class="cell" id="cell71"></div>
+                    <div class="cell" id="cell72"></div>
+                    <div class="cell" id="cell79"></div>
+                    <div class="cell" id="cell80"></div>
+                    <div class="cell" id="cell81"></div>
+                </div>
+            </div>
+            <div class="container noSolution notVisible">There is no solution.</div>
+            <div class="buttonContainer">
+                <div class="button" id="solve">Solve</div>
+                <div class="button" id="createUnsolved">Create Unsolved</div>
+                <div class="button" id="check">Check</div>
+                <div class="button" id="clear">Clear</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
