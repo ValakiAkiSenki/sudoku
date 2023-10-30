@@ -1,5 +1,4 @@
 let boardSize = 9;
-let numOfCellsToRemove = 5;
 
 let currentNumOfSolutions;
 let board;
@@ -103,7 +102,21 @@ function solveBoard() {
 }
 
 function createBoard() {
-    
+    solveBoard();
+
+    let numOfCellsToRemove = 40;
+
+    while (numOfCellsToRemove > 0) {
+        let i = Math.floor(Math.random() * boardSize);
+        let o = Math.floor(Math.random() * boardSize);
+
+        if (board[i][o] != 0) {
+            numOfCellsToRemove--;
+            board[i][o] = 0;
+        }
+    }
+
+    renderBoard();
 }
 
 function checkBoard() {
