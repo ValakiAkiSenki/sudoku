@@ -134,20 +134,16 @@ function checkBoard() {
         }
     }
 
-    if (numOfMistakes==0) {
+    if (numOfMistakes==0 && currentNumOfSolutions > 0) {
         document.querySelector(".noSolution").classList.add("notVisible");
+    }
+    else {
+        document.querySelector(".noSolution").classList.remove("notVisible");
     }
 }
 
 function clearBoard() {
-    board = [];
-    for (let i = 0; i < boardSize; i++) {
-        let tmp = [];
-        for (let o = 0; o < boardSize; o++) {
-            tmp.push(0);
-        }
-        board.push(tmp);
-    }
+    initBoard();
 
     document.querySelector(".noSolution").classList.add("notVisible");
 
