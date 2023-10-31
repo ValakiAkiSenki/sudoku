@@ -102,9 +102,61 @@ function solveBoard() {
 }
 
 function createBoard() {
+    let numOfCellsToRemove = 40;
+    let shuffleAmount = 5;
+
+    clearBoard();
     solveBoard();
 
-    let numOfCellsToRemove = 40;
+    for (let s = 0; s < shuffleAmount; s++) {
+        // shuffle 3x3 rows
+        let randAX = Math.floor(Math.random()*3);
+        let randBX = Math.floor(Math.random()*3);
+
+        for (let i = 0; i < 3; i++) {
+            let tmp = board[randAX*3+i];
+            board[randAX*3+i] = board[randBX*3+i];
+            board[randBX*3+i] = tmp;
+        }
+
+
+        // shuffle 3x3 columns
+        let randAY = Math.floor(Math.random()*3);
+        let randBY = Math.floor(Math.random()*3);
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                let tmp = board[i][randAY*3+j];
+                board[i][randAY*3+j] = board[i][randBY*3+j];
+                board[i][randBY*3+j] = tmp;
+            }
+        }
+    }
+
+    for (let s = 0; s < shuffleAmount; s++) {
+        // shuffle 1x1 rows in every 3x3 row
+        for (let i = 0; i < 3; i++) {
+            let randA = Math.floor(Math.random()*3);
+            let randB = Math.floor(Math.random()*3);
+    
+            let tmp = board[i*3+randA];
+            board[i*3+randA] = board[i*3+randB];
+            board[i*3+randB] = tmp;
+        }
+
+
+        // shuffle 1x1 rows in every 3x3 row
+        for (let j = 0; j < 3; j++) {
+            let randA = Math.floor(Math.random()*3);
+            let randB = Math.floor(Math.random()*3);
+    
+            for (let i = 0; i < 9; i++) {
+                let tmp = board[i][j*3+randA];
+                board[i][j*3+randA] = board[i][j*3+randB];
+                board[i][j*3+randB] = tmp;
+            }
+        }
+    }
 
     while (numOfCellsToRemove > 0) {
         let i = Math.floor(Math.random() * boardSize);
@@ -142,12 +194,20 @@ function checkBoard() {
     }
 }
 
+function removeMistakeMarkers() {
+    for (let i = 0; i < boardSize; i++) {
+        for (let o = 0; o < boardSize; o++) {
+            document.getElementById(("cell"+(String)(i*boardSize+o+1))).classList.remove("mistake");
+        }
+    }
+}
+
 function clearBoard() {
     initBoard();
 
     document.querySelector(".noSolution").classList.add("notVisible");
 
-    checkBoard();
+    removeMistakeMarkers();
     renderBoard();
 }
 
