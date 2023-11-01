@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Sudoku</title>
     <script src="main.js" defer></script>
+    <script src="sudoku.js"></script>
 </head>
 <body>
     <header>
@@ -13,6 +14,12 @@
     </header>
     <main>
         <div class="container">
+            <div class="difficultyContainer">
+                <div class="difficultyText">Difficulty:</div>
+                <div class="button" id="easyDifficulty">Easy</div>
+                <div class="button" id="mediumDifficulty">Medium</div>
+                <div class="button" id="hardDifficulty">Hard</div>
+            </div>
             <div class="gridContainer">
                 <div class="group" id="group1">
                     <div class="cell" id="cell1"></div>
