@@ -98,7 +98,8 @@ function solveBoard() {
     else {
         document.querySelector(".noSolution").classList.add("notVisible");
     }
-    checkBoard();
+    checkForMistakes();
+    toggleNoSolution();
     renderBoard();
 }
 
@@ -211,7 +212,7 @@ function isUnique() {
     return currentNumOfSolutions == 1;
 }
 
-function checkBoard() {
+function checkForMistakes() {
     let numOfMistakes = 0;
 
     for (let i = 0; i < boardSize; i++) {
@@ -225,8 +226,15 @@ function checkBoard() {
             }
         }
     }
+}
 
-    if (numOfMistakes==0 && currentNumOfSolutions > 0) {
+function checkBoard() {
+    checkForMistakes();
+    toggleNoSolution();
+}
+
+function toggleNoSolution() {
+    if (currentNumOfSolutions > 0) {
         document.querySelector(".noSolution").classList.add("notVisible");
     }
     else {
@@ -306,6 +314,10 @@ function handleKeyboardInput(e) {
             default:
                 break;
         }
+    }
+
+    if (!board.includes(0)) {
+        // checkForMistakes()
     }
 }
 
