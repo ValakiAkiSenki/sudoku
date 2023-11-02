@@ -407,10 +407,3 @@ function hidePopup() {
     document.getElementById("endGame").removeEventListener("click", actuallyCreateBoard);
     document.getElementById("endGame").removeEventListener("click", actuallySolveBoard);
 }
-
-function main() {
-    initBoard();
-    addEventListeners();
-    setDifficultyEasy();
-    renderBoard();
-}

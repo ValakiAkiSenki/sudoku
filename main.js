@@ -1,1 +1,4 @@
-main();
+initBoard();
+addEventListeners();
+setDifficultyEasy();
+actuallyCreateBoard();
