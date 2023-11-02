@@ -91,6 +91,12 @@ function renderBoard() {
 }
 
 function solveBoard() {
+    showPopup(actuallySolveBoard);
+}
+
+function actuallySolveBoard() {
+    hidePopup();
+
     currentNumOfSolutions = 0;
     if (!solve(0, 0, 1)) {
         document.querySelector(".noSolution").classList.remove("notVisible");
@@ -104,10 +110,16 @@ function solveBoard() {
 }
 
 function createBoard() {
+    showPopup(actuallyCreateBoard);
+}
+
+function actuallyCreateBoard() {
+    hidePopup();
+
     let shuffleAmount = 5;
 
-    clearBoard();
-    solveBoard();
+    actuallyClearBoard();
+    actuallySolveBoard();
 
     for (let s = 0; s < shuffleAmount; s++) {
         // shuffle 3x3 rows
@@ -194,6 +206,12 @@ function createBoard() {
 }
 
 function isUnique() {
+    tryToSolve(2);
+
+    return currentNumOfSolutions == 1;
+}
+
+function tryToSolve(maxNumOfSolutions) {
     let tmp = [];
     currentNumOfSolutions = 0;
 
@@ -205,11 +223,9 @@ function isUnique() {
         tmp.push(a);
     }
 
-    solve(0,0,2);
+    solve(0,0,maxNumOfSolutions);
 
     board = tmp;
-
-    return currentNumOfSolutions == 1;
 }
 
 function checkForMistakes() {
@@ -234,6 +250,7 @@ function checkBoard() {
 }
 
 function toggleNoSolution() {
+    tryToSolve(1);
     if (currentNumOfSolutions > 0) {
         document.querySelector(".noSolution").classList.add("notVisible");
     }
@@ -251,6 +268,12 @@ function removeMistakeMarkers() {
 }
 
 function clearBoard() {
+    showPopup(actuallyClearBoard);
+}
+
+function actuallyClearBoard() {
+    hidePopup();
+
     initBoard();
 
     document.querySelector(".noSolution").classList.add("notVisible");
@@ -367,6 +390,22 @@ function addEventListeners() {
     diffButtons[0].addEventListener("click", setDifficultyEasy);
     diffButtons[1].addEventListener("click", setDifficultyMedium);
     diffButtons[2].addEventListener("click", setDifficultyHard);
+
+    document.getElementById("continue").addEventListener("click", hidePopup);
+}
+
+function showPopup(f) {
+    document.getElementById("popup").classList.add("show");
+
+    document.getElementById("endGame").addEventListener("click", f);
+}
+
+function hidePopup() {
+    document.getElementById("popup").classList.remove("show");
+
+    document.getElementById("endGame").removeEventListener("click", actuallyClearBoard);
+    document.getElementById("endGame").removeEventListener("click", actuallyCreateBoard);
+    document.getElementById("endGame").removeEventListener("click", actuallySolveBoard);
 }
 
 function main() {
