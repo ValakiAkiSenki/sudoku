@@ -80,7 +80,13 @@ h1 {
     padding-top: 5px;
 }
 
-.noSolution.notVisible{
+.filled {
+    color: rgb(2, 190, 27);
+    font-size: 1.5em;
+    padding-top: 5px;
+}
+
+.notVisible{
     display: none;
 }
 
@@ -143,4 +149,8 @@ h1 {
 
 .selectedCell.fixed {
     background-color: #ff7158;
+}
+
+.mistake.fixed {
+    background-color: rgb(255, 119, 119);
 }

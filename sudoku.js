@@ -114,6 +114,7 @@ function solveBoard() {
 }
 
 function actuallySolveBoard() {
+    document.querySelector(".filled").classList.add("notVisible");
     hidePopup();
 
     currentNumOfSolutions = 0;
@@ -270,11 +271,19 @@ function checkForMistakes() {
             }
         }
     }
+
+    return numOfMistakes;
 }
 
 function checkBoard() {
-    checkForMistakes();
     toggleNoSolution();
+
+    if (!board.flat().includes(0) && checkForMistakes() == 0) {
+        document.querySelector(".filled").classList.remove("notVisible");
+    }
+    else {
+        document.querySelector(".filled").classList.add("notVisible");
+    }
 }
 
 function toggleNoSolution() {
@@ -283,7 +292,9 @@ function toggleNoSolution() {
         document.querySelector(".noSolution").classList.add("notVisible");
     }
     else {
-        document.querySelector(".noSolution").classList.remove("notVisible");
+        if (!board.flat().includes(0)) {
+            document.querySelector(".noSolution").classList.remove("notVisible");
+        }
     }
 }
 
@@ -301,9 +312,11 @@ function clearBoard() {
 
 function actuallyClearBoard() {
     hidePopup();
-
+    
     initBoard();
-
+    initFixedBoard();
+    
+    document.querySelector(".filled").classList.add("notVisible");
     document.querySelector(".noSolution").classList.add("notVisible");
 
     removeMistakeMarkers();
@@ -338,8 +351,13 @@ function handleKeyboardInput(e) {
         switch (e.key) {
             case "Backspace":
             case "Delete":
-                selectedCell.innerHTML = "";
-                board[Math.floor((selectedCell.id.substring(4)-1)/9)][(selectedCell.id.substring(4)-1)%9] = 0;
+                let i = Math.floor((selectedCell.id.substring(4)-1)/9);
+                let o = (selectedCell.id.substring(4)-1)%9;
+        
+                if (fixedBoard[i][o] == 0) {
+                    selectedCell.innerHTML = "";
+                    board[i][o] = 0;
+                }
                 break;
 
             case "ArrowUp":
@@ -369,10 +387,6 @@ function handleKeyboardInput(e) {
             default:
                 break;
         }
-    }
-
-    if (!board.includes(0)) {
-        // checkForMistakes()
     }
 }
 
