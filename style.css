@@ -136,3 +136,11 @@ h1 {
     margin-bottom: 8px;
     text-align: center;
 }
+
+.cell.fixed {
+    background-color: rgb(223, 246, 255);
+}
+
+.selectedCell.fixed {
+    background-color: #ff7158;
+}

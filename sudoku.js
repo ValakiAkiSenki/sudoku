@@ -4,6 +4,7 @@ let numOfCellsToRemove;
 
 let currentNumOfSolutions;
 let board = [];
+let fixedBoard = [];
 let diffButtons = [];
 
 let selectedCell;
@@ -16,6 +17,17 @@ function initBoard() {
             tmp.push(0);
         }
         board.push(tmp);
+    }
+}
+
+function initFixedBoard() {
+    fixedBoard = []
+    for (let i = 0; i < boardSize; i++) {
+        let tmp = [];
+        for (let o = 0; o < boardSize; o++) {
+            tmp.push(0);
+        }
+        fixedBoard.push(tmp);
     }
 }
 
@@ -85,6 +97,13 @@ function renderBoard() {
             }
             else {
                 cell.innerHTML = board[i][o];
+            }
+
+            if (fixedBoard[i][o] != 0) {
+                cell.classList.add("fixed");
+            }
+            else {
+                cell.classList.remove("fixed");
             }
         }
     }
@@ -202,6 +221,15 @@ function actuallyCreateBoard() {
         attemts--;
     }
 
+    fixedBoard = [];
+    for (let i = 0; i < boardSize; i++) {
+        let fTmp = [];
+        for (let o = 0; o < boardSize; o++) {
+            fTmp.push(board[i][o]);
+        }
+        fixedBoard.push(fTmp);
+    }
+
     renderBoard();
 }
 
@@ -297,10 +325,14 @@ function handleKeyboardInput(e) {
     if (!selectedCell)
         return;
 
-    if (!isNaN(e.key)) {
-        // selectedCell.innerHTML += e.key; // uncomment if more digits are required
-        selectedCell.innerHTML = e.key;
-        board[Math.floor((selectedCell.id.substring(4)-1)/9)][(selectedCell.id.substring(4)-1)%9] = e.key;
+    if (!isNaN(e.key) && e.key != 0) {
+        let i = Math.floor((selectedCell.id.substring(4)-1)/9);
+        let o = (selectedCell.id.substring(4)-1)%9;
+
+        if (fixedBoard[i][o] == 0) {
+            selectedCell.innerHTML = e.key;
+            board[i][o] = e.key;
+        }
     }
     else {
         switch (e.key) {
