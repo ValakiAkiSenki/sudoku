@@ -118,6 +118,11 @@ function actuallySolveBoard() {
     hidePopup();
 
     currentNumOfSolutions = 0;
+    
+    if (checkForMistakes() > 0) {
+        return;
+    }
+
     if (!solve(0, 0, 1)) {
         document.querySelector(".noSolution").classList.remove("notVisible");
     }
